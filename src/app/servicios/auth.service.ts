@@ -4,10 +4,10 @@ import * as firebase from 'firebase/app';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class AuthService {
+export class AuthService { 
 
   constructor(
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth    
   ) { }
 
   registerUser(email: string, pass: string) {
@@ -33,4 +33,5 @@ export class AuthService {
   logout() {
     return this.afAuth.auth.signOut();
   }
+  
 }
