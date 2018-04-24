@@ -1,7 +1,6 @@
 export class Teacher {
     $key: string;
-    run: number;
-    div: string[1];
+    run: string;    
     names: string;
     paterno: string;
     materno: string;

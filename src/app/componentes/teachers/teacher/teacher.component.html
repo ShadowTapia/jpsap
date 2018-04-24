@@ -1,3 +1,75 @@
-<p>
-  teacher works!
-</p>
+<div class="card border-secondary mb-3 mt-5" style="max-width: 300rem;">
+  <div class="card-header">Ingreso Docentes</div>
+  <div class="card-body">
+    <p *ngIf="isValidFormSubmitted" [ngClass]="'Success'">
+      Form Submitted successfully
+    </p>
+    <form #teacherForm="ngForm" (ngSubmit)="onSubmit(teacherForm)">
+      <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="teacherService.selectedTeacher.$key">
+      <table>
+        <tr>
+          <td>
+            <div class="form-group">
+              <input type="text" class="form-control" name="run" style="width: 9rem;" #run="ngModel" [(ngModel)]="teacherService.selectedTeacher.run"
+                [textMask]="{mask: mask}" placeholder="Run Profesor">
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <input type="text" class="form-control" name="names" style="width: 20rem;" #names="ngModel" [(ngModel)]="teacherService.selectedTeacher.names"
+                placeholder="Agrega Nombre Profesor">
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <input type="text" class="form-control" name="paterno" style="width: 20rem;" #paterno="ngModel" [(ngModel)]="teacherService.selectedTeacher.paterno"
+                placeholder="Agrega A. Paterno Profesor">
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <input type="text" class="form-control" name="materno" style="width: 20rem;" #materno="ngModel" [(ngModel)]="teacherService.selectedTeacher.materno"
+                placeholder="Agrega A. Materno Profesor">
+            </div>
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <div class="form-group">
+              <input type="text" class="form-control" name="address" #address="ngModel" style="width: 30rem;" [(ngModel)]="teacherService.selectedTeacher.address"
+                placeholder="Agrega Dirección Profesor">
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <input type="number" class="form-control" name="fono" style="width: 10rem;" #fono="ngModel" [(ngModel)]="teacherService.selectedTeacher.fono"
+                placeholder="Agrega Telefono">
+            </div>
+          </td>
+          <td>
+            <div class="form-group" [class.has-error]="email.invalid && email.touched">
+              <input type="email" class="form-control" required email  name="email" style="width: 20rem;" #email="ngModel" [(ngModel)]="teacherService.selectedTeacher.email"
+                placeholder="Agrega Email Profesor" class="form-control">
+                <span class="help-block" *ngIf="email.errors?.required && email.touched">
+                  Email es requerido
+                </span>
+                <span class="help-block" *ngIf="email.errors?.email && email.touched">
+                    Email es invalido
+                  </span>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">
+          <i class="fa fa-plus-circle"></i> Agregar Profesor
+        </button>
+        <button class="btn btn-secondary" type="reset" (click)="resetForm(teacherForm)">
+          <i class="fa fa-refresh"></i> Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

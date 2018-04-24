@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+
+
 //Components
 import { HomepageComponent } from './componentes/homepage/homepage.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
@@ -27,7 +30,13 @@ import { environment } from '../environments/environment';
 import { AuthService } from './servicios/auth.service';
 import { TeacherService } from './servicios/teacher.service';
 
+//Toastr
+import { ToastrModule } from 'ngx-toastr';
+
 import { AuthGuard } from './guards/auth.guard';
+
+import { TextMaskModule } from 'angular2-text-mask';
+
 
 @NgModule({
   declarations: [
@@ -49,7 +58,10 @@ import { AuthGuard } from './guards/auth.guard';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    FlashMessagesModule
+    FlashMessagesModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    TextMaskModule    
   ],
   providers: [AuthService, AuthGuard, FlashMessagesService, TeacherService],
   bootstrap: [AppComponent]

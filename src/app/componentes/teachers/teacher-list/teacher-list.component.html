@@ -1,3 +1,24 @@
-<p>
-  teacher-list works!
-</p>
+<div class="card text-white bg-dark mb-3" style="max-width: 150rem;">
+  <div class="card-header">Listado de Profesores</div>
+  <div class="card-body">
+    <table class="table table-sm table-hover">
+      <tbody>
+        <tr *ngFor="let teacher of teacherList;let indice=index">
+          <td>{{indice+1}}</td>
+          <td>{{teacher.run}}</td>
+          <td>{{teacher.names}}</td>
+          <td>{{teacher.paterno}}</td>
+          <td>{{teacher.materno}}</td>
+          <td>
+            <button class="btn btn-secondary text-white" type="button" (click)="onEdit(teacher)">
+              <i class="fa fa-edit"></i>
+            </button>
+            <a class="btn btn-danger text-white" (click)="onDelete(teacher.$key)">
+              <i class="fa fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

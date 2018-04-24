@@ -5,7 +5,7 @@ import { Teacher } from '../models/teacher';
 @Injectable()
 export class TeacherService {
   teacherList: AngularFireList<any>;
-  selectTeacher: Teacher = new Teacher();
+  selectedTeacher: Teacher = new Teacher();
 
   constructor(
     private firebase: AngularFireDatabase
@@ -16,10 +16,9 @@ export class TeacherService {
     return this.teacherList = this.firebase.list('teachers');
   }
 
-  insertTachers(teacher: Teacher){
+  insertTeachers(teacher: Teacher){
     this.teacherList.push({
-      run: teacher.run,
-      div: teacher.div,
+      run: teacher.run,      
       names: teacher.names,
       paterno: teacher.paterno,
       materno: teacher.materno,
@@ -31,8 +30,7 @@ export class TeacherService {
 
   updateTeacher(teacher: Teacher){
     this.teacherList.update(teacher.$key,{
-      run: teacher.run,
-      div: teacher.div,
+      run: teacher.run,      
       names: teacher.names,
       paterno: teacher.paterno,
       materno: teacher.materno,
