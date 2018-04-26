@@ -1,35 +1,59 @@
 <div class="card border-secondary mb-3 mt-5" style="max-width: 300rem;">
   <div class="card-header">Ingreso Docentes</div>
-  <div class="card-body">
-    <p *ngIf="isValidFormSubmitted" [ngClass]="'Success'">
-      Form Submitted successfully
-    </p>
+  <div class="card-body">    
     <form #teacherForm="ngForm" (ngSubmit)="onSubmit(teacherForm)">
       <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="teacherService.selectedTeacher.$key">
       <table>
         <tr>
           <td>
-            <div class="form-group">
-              <input type="text" class="form-control" name="run" style="width: 9rem;" #run="ngModel" [(ngModel)]="teacherService.selectedTeacher.run"
+            <div class="form-group" [class.has-error]="run.invalidRut && run.touched">
+              <input type="text" class="form-control" validateRut required name="run" style="width: 9rem;" #run="ngModel" [(ngModel)]="teacherService.selectedTeacher.run"
                 [textMask]="{mask: mask}" placeholder="Run Profesor">
+                <span class="help-block" *ngIf="run.errors?.required && run.touched">
+                  Run es requerido
+                </span>
+                <span class="help-block" *ngIf="run.errors?.invalidRut && run.touched">
+                  Run invalido
+                </span>
             </div>
           </td>
           <td>
-            <div class="form-group">
-              <input type="text" class="form-control" name="names" style="width: 20rem;" #names="ngModel" [(ngModel)]="teacherService.selectedTeacher.names"
-                placeholder="Agrega Nombre Profesor">
+            <div class="form-group" [class.has-error]="names.invalid && names.touched"
+             [class.has-success]="names.valid">
+              <input type="text" required class="form-control" name="names" style="width: 20rem;" #names="ngModel" [(ngModel)]="teacherService.selectedTeacher.names"
+                placeholder="Agrega Nombre Profesor" pattern="^[a-zA-Z]+$">
+                <span class="help-block" *ngIf="names.errors?.required && names.touched">
+                  Nombre es requerido
+                </span>
+                <span class="help-block" *ngIf="names.errors?.pattern && names.touched">
+                  Nombre Invalido
+                </span>
             </div>
           </td>
           <td>
-            <div class="form-group">
-              <input type="text" class="form-control" name="paterno" style="width: 20rem;" #paterno="ngModel" [(ngModel)]="teacherService.selectedTeacher.paterno"
-                placeholder="Agrega A. Paterno Profesor">
+            <div class="form-group" [class.has-error]="paterno.invalid && paterno.touched"
+            [class.has-success]="paterno.valid">
+              <input type="text" required class="form-control" name="paterno" style="width: 20rem;" #paterno="ngModel" [(ngModel)]="teacherService.selectedTeacher.paterno"
+                placeholder="Agrega A. Paterno Profesor" pattern="^[a-zA-Z]+$">
+                <span class="help-block" *ngIf="paterno.errors?.required && paterno.touched">
+                  Apellido Paterno es requerido
+                </span>
+                <span class="help-block" *ngIf="paterno.errors?.pattern && paterno.touched">
+                  Apellido Paterno Invalido
+                </span>
             </div>
           </td>
           <td>
-            <div class="form-group">
-              <input type="text" class="form-control" name="materno" style="width: 20rem;" #materno="ngModel" [(ngModel)]="teacherService.selectedTeacher.materno"
-                placeholder="Agrega A. Materno Profesor">
+            <div class="form-group" [class.has-error]="materno.invalid && materno.touched"
+            [class.has-success]="materno.valid">
+              <input type="text" required class="form-control" name="materno" style="width: 20rem;" #materno="ngModel" [(ngModel)]="teacherService.selectedTeacher.materno"
+                placeholder="Agrega A. Materno Profesor"  pattern="^[a-zA-Z]+$"> 
+                <span class="help-block" *ngIf="materno.errors?.required && materno.touched">
+                  Apellido Materno es requerido
+                </span>
+                <span class="help-block" *ngIf="materno.errors?.pattern && materno.touched">
+                  Apellido Materno es Invalido
+                </span>
             </div>
           </td>
         </tr>
@@ -43,19 +67,22 @@
             </div>
           </td>
           <td>
-            <div class="form-group">
-              <input type="number" class="form-control" name="fono" style="width: 10rem;" #fono="ngModel" [(ngModel)]="teacherService.selectedTeacher.fono"
-                placeholder="Agrega Telefono">
+            <div class="form-group" [class.has-error]="fono.invalid && fono.touched">
+              <input type="text" class="form-control" maxlength="11" pattern="^[0-9]+$"  name="fono" style="width: 10rem;" #fono="ngModel" [(ngModel)]="teacherService.selectedTeacher.fono"
+              placeholder="Agrega Telefono">
+              <span class="help-block" *ngIf="fono.errors?.pattern && fono.touched">
+                Telefono es invalido
+              </span>              
             </div>
           </td>
           <td>
             <div class="form-group" [class.has-error]="email.invalid && email.touched">
-              <input type="email" class="form-control" required email  name="email" style="width: 20rem;" #email="ngModel" [(ngModel)]="teacherService.selectedTeacher.email"
-                placeholder="Agrega Email Profesor" class="form-control">
+              <input type="email" class="form-control" required pattern="^[a-z0-9_.+-]+@[a-z0-9-]+\.[a-z0-9-.]+$" email  name="email" style="width: 20rem;" #email="ngModel" [(ngModel)]="teacherService.selectedTeacher.email"
+                placeholder="Agrega Email Profesor">
                 <span class="help-block" *ngIf="email.errors?.required && email.touched">
                   Email es requerido
                 </span>
-                <span class="help-block" *ngIf="email.errors?.email && email.touched">
+                <span class="help-block" *ngIf="email.errors?.pattern && email.touched">
                     Email es invalido
                   </span>
             </div>

@@ -17,6 +17,7 @@ export class TeacherComponent implements OnInit {
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   //Se establece una mascara para el run profesor.
   mask: any[] = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /[a-zA-Z0-9]/];
+  masktel: any[] = [/[0-9]/];
   constructor(
     private teacherService: TeacherService,
     private toastr: ToastrService

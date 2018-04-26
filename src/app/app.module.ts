@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { Ng2Rut } from 'ng2-rut';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
@@ -61,7 +62,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     FlashMessagesModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    TextMaskModule    
+    TextMaskModule,
+    Ng2Rut    
   ],
   providers: [AuthService, AuthGuard, FlashMessagesService, TeacherService],
   bootstrap: [AppComponent]

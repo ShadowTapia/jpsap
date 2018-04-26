@@ -3,12 +3,20 @@
   <div class="card-body">
     <table class="table table-sm table-hover">
       <tbody>
+        <tr>
+          <td>N°</td>
+          <td class="text-center">RUN</td>
+          <td>Nombres</td>
+          <td>A. Paterno</td>
+          <td>A. Materno</td>
+          <td>Opciones</td>
+        </tr>
         <tr *ngFor="let teacher of teacherList;let indice=index">
           <td>{{indice+1}}</td>
           <td>{{teacher.run}}</td>
-          <td>{{teacher.names}}</td>
-          <td>{{teacher.paterno}}</td>
-          <td>{{teacher.materno}}</td>
+          <td>{{teacher.names | uppercase}}</td>
+          <td>{{teacher.paterno | uppercase}}</td>
+          <td>{{teacher.materno | uppercase}}</td>
           <td>
             <button class="btn btn-secondary text-white" type="button" (click)="onEdit(teacher)">
               <i class="fa fa-edit"></i>
